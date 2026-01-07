@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>WXLLICULATOR</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .calculator {
+    width: 95vw;
+    max-width: 420px;
+    background: #1c1c1c;
+    padding: 5vw;
+    border-radius: 10vw;
+  }
+
+  h1 {
+    text-align: center;
+    color: white;
+    font-size: 6vw;
+    margin-bottom: 4vw;
+    letter-spacing: 0.3em;
+  }
+
+  #display {
+    width: 100%;
+    height: 15vw;
+    font-size: 9vw;
+    text-align: right;
+    padding: 2vw;
+    border-radius: 5vw;
+    border: none;
+    background: #3a3a3a;
+    color: white;
+    margin-bottom: 4vw;
+  }
+
+  .row {
+    display: flex;
+    margin-bottom: 3vw;
+  }
+
+  button {
+    flex: 1;
+    height: 16vw;
+    font-size: 7vw;
+    border: none;
+    border-radius: 50%;
+    margin: 1vw;
+    cursor: pointer;
+  }
+
+  .number { background: #505050; color: white; }
+  .operator { background: #ff9500; color: white; }
+  .function { background: #a5a5a5; color: black; }
+
+  .zero {
+    flex: 2;
+    border-radius: 8vw;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+  <h1>WXLLICULATOR</h1>
+  <input type="text" id="display" readonly>
+
+  <div class="row">
+    <button class="function" onclick="clearDisplay()">C</button>
+    <button class="function" onclick="backspace()">⌫</button>
+    <button class="function" onclick="press('%')">%</button>
+    <button class="operator" onclick="press('/')">÷</button>
+  </div>
+
+  <div class="row">
+    <button class="number" onclick="press('7')">7</button>
+    <button class="number" onclick="press('8')">8</button>
+    <button class="number" onclick="press('9')">9</button>
+    <button class="operator" onclick="press('*')">×</button>
+  </div>
+
+  <div class="row">
+    <button class="number" onclick="press('4')">4</button>
+    <button class="number" onclick="press('5')">5</button>
+    <button class="number" onclick="press('6')">6</button>
+    <button class="operator" onclick="press('-')">−</button>
+  </div>
+
+  <div class="row">
+    <button class="number" onclick="press('1')">1</button>
+    <button class="number" onclick="press('2')">2</button>
+    <button class="number" onclick="press('3')">3</button>
+    <button class="operator" onclick="press('+')">+</button>
+  </div>
+
+  <div class="row">
+    <button class="number zero" onclick="press('0')">0</button>
+    <button class="number" onclick="press('.')">.</button>
+    <button class="operator" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+function press(val) {
+  display.value += val;
+}
+function clearDisplay() {
+  display.value = '';
+}
+function backspace() {
+  display.value = display.value.slice(0, -1);
+}
+function calculate() {
+  try {
+    display.value = eval(display.value);
+  } catch {
+    display.value = 'Error';
+  }
+}
+</script>
+
+</body>
+</html>
